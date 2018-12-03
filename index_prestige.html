@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Pledge your Support for Prestige</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <script src="html2canvas.min.js"></script>
+        <script src="FileSaver.min.js"></script>
+
+        <link type="text/css" href="bootstrap.css" rel="stylesheet"></link>
+        <style type="text/css">
+          body {
+            text-align: center;
+          }
+
+          @font-face {
+                font-family: "bebas";
+                src: url("BebasNeue-Regular.ttf");
+            }
+
+          .banner-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            width: 100%;
+          }
+
+          .banner-container > div {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+          }
+
+            #design {
+                display: none;
+                height: 500px;
+                width: 700px;
+                position: relative;
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+                margin-bottom: 1rem;
+                background-image: url("apga.jpg");
+            }
+
+            #picture {
+                position: absolute;
+                right: 20px;
+                float: right;
+                top: 48px;
+                border-radius: 150px;
+                height: 250px;
+                width: 250px;
+                position: relative;
+                overflow: hidden;
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+
+            #myName {
+                display: none;
+                position: absolute;
+                text-transform: uppercase;
+                display: table;
+                float: right;
+                font-size: 45px;
+                font-family: 'bebas';
+                font-weight: 500;
+                top: 300px;
+                width: 280px;
+                right: 10px;
+                text-align: center;
+            }
+
+          #button {
+            display: none;
+            margin-top: 10px;
+          }
+
+          .form-group {
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+          }
+
+          .footer {
+            display: flex;
+            height: inherit;
+            justify-content: flex-end;
+          }
+
+          #candidate-pix {
+                overflow: hidden;
+                border-radius: 150px;
+                background: url('prestige.jpg');
+                height: 100px;
+                width: 100px;
+                position: relative;
+                overflow: hidden;
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+          }
+
+        </style>
+
+        <script type="text/javascript">
+          function readURL(input) {
+                var myName = document.getElementById("yourName").value;
+
+                if (myName.trim() == "") {
+                    alert("Please enter your name first");
+                } else {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+
+                        reader.onload = function (e) {
+                            document.getElementById('picture').style.backgroundImage = "url(" + e.target.result + ")";
+                            
+                            document.getElementById('design').style.display = 'block';
+                            document.getElementById('button').style.display = 'block';
+                            document.getElementById("myName").innerHTML = "I, " + myName;
+                            document.getElementById('myName').style.display = 'block';
+                            document.getElementById('candidate-pix').style.display = 'none';
+                            document.getElementById("message").innerHTML = "Share";
+                        }
+
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+          }
+
+          function saveGeneratedImage() {
+            var element = document.getElementById("design");
+                html2canvas(element).then(canvas => {
+                    // document.body.appendChild(canvas)
+                    canvas.toBlob(function(blob) {
+                        saveAs(blob, "istandwithprestige.png");
+                    });
+                });
+          }
+        </script>
+    </head>
+
+    <body>
+        <div class="banner-container bg-dark py-5">
+            <div class="header-area" >
+                <div id="candidate-pix"></div>
+                <h3 class="mb-3 text-white"> <span id="message">Pledge</span> your Support for Prestige </h3>
+            </div>
+
+            <div class="col-md-4 px-0 mb-4">
+                <button id="button" class="btn btn-primary btn-block" onclick="saveGeneratedImage()">Save Your Image</button>
+            </div>
+
+            <div class="col-md-12">
+                <div id="design">
+                    <div id="picture"></div>
+                    <div id="myName" class="text-truncate"></div>
+                </div>
+            </div>
+
+            <div class="col-md-4 card pt-4 pb-3" id="form">
+                <div class="form-group w-100">
+                    <label for="yourName">Your Name</label>
+                    <input type="text" placeholder="Enter your Name" id="yourName" class="form-control">
+                    <small class="text-muted">Best Character length - 15characters</small>
+                </div>
+                <div class="form-group w-100">
+                    <label for="yourpix">Browse your Image</label>
+                    <input type='file' id="yourpix" onchange="readURL(this)" class="form-control" />
+                </div>
+            </div>
+
+            <div class="footer small pt-4 text-white">
+                Designed by Online Campaign Experts (OCE) | 08087722251
+            </div>
+        </div>
+    </body>
+</html>
