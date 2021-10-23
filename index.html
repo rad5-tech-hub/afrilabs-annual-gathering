@@ -198,11 +198,22 @@
             var element = document.getElementById("design");
                 html2canvas(element).then(canvas => {
                     // document.body.appendChild(canvas)
-                    canvas.toBlob(function(blob) {
-                        saveAs(blob, "afrilabsannualgathering.png");
-                    });
+                    // canvas.toBlob(function(blob) {
+                    //     saveAs(blob, "afrilabsannualgathering.png");
+                    // });
+                    const dataURL = canvas.toDataURL();
+                    downloadImage(dataURL);
                 });
           }
+
+          // Save | Download image
+            function downloadImage(data, filename = 'afrilabsannualgathering.png') {
+                var a = document.createElement('a');
+                a.href = data;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+            }
         </script>
     </head>
 
