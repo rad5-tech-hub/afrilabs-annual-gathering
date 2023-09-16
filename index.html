@@ -163,7 +163,7 @@
                             
                             document.getElementById('design').style.display = 'block';
                             document.getElementById('button').style.display = 'block';
-                            document.getElementById("myName").innerHTML = `<span style="font-weight: bold;">${myName.split(' ', 2)[0]}</span> ${myName.split(' ', 2)[1]}`;
+                            document.getElementById("myName").innerHTML = `<span style="font-weight: bold;">${myName.split(' ', 2)[0]}</span> ${myName.split(' ', 2)[1] ?? ''}`;
                             document.getElementById("myOrganization").innerHTML = myOrganization;
                             document.getElementById("myCountry").innerHTML = myCountry;
                             document.getElementById('myName').style.display = 'block';
